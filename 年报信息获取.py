@@ -13,7 +13,7 @@ stock_code = '003816'
 category_cn = '年报'
 today = datetime.today().date().strftime('%Y-%m-%d')
 seDate = f'2000-01-01~{today}'
-
+print("today ="+today);
 category_map = {
     "年报": "category_ndbg_szsh",
     "半年报": "category_bndbg_szsh",
