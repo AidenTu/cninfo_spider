@@ -40,9 +40,9 @@ with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
 
         code_name = df['secCode'][i]
         firm_name = df['secName'][i]
+        directory_name = f"{code_name}{firm_name}"
 
-
-        code_dir = pdf_dir.joinpath(code_name)
+        code_dir = pdf_dir.joinpath(directory_name)
         code_dir.mkdir(exist_ok=True)
         pdf_name = firm_name + '：' + df['announcementTitle'][i]
         
@@ -50,17 +50,11 @@ with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
         print(f'正在下载 -- {pdf_name}')
 
         # 使用submit方法将下载任务提交给线程池
-        future = executor.submit(download_pdf, base_url, params, headers, pdf_dir, pdf_name)
+        future = executor.submit(download_pdf, base_url, params, headers, code_dir, pdf_name)
         futures.append(future)
     
     # 等待所有任务完成
     concurrent.futures.wait(futures)
-
-    
-    #response = requests.get(url=base_url, params=params, headers=headers)
-    #pdf_path = code_dir.joinpath(pdf_name + '.pdf')
-    #with open(pdf_path, 'wb') as f:
-        #f.write(response.content)
 
 print('\n全部文件下载完毕！')
     

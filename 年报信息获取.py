@@ -9,10 +9,10 @@ root_dir = pathlib.Path.cwd()
 
 
 # 定义查询目标
-stock_code = '003816'
+stock_code = '000423'
 category_cn = '年报'
 today = datetime.today().date().strftime('%Y-%m-%d')
-seDate = f'2000-01-01~{today}'
+seDate = f'2021-01-01~{today}'
 print("today ="+today);
 category_map = {
     "年报": "category_ndbg_szsh",
